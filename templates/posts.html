@@ -6,13 +6,25 @@
 
 {% block body %}
 <h1>Posts</h1>
-    {% for d in data %}
-    <h2>{{d.title}}</h2>
-    {% if d.Author %}
-        <h1>By:{{d.Author}}</h1>
+<hr>
+<h2>Create New Blog Post</h2>
+<form action="/posts",method="POST">
+    Title:<input type="text" name="title" id="title">
+    <br>
+    Author:<input type="text" name="author" id="author">
+    <br>
+    Post:<input type="text" name=blog" id="blog">
+    <br>
+    <input type="submit" value="Post">
+</form>
+<hr>
+    {% for posts in post %}
+    <h2>{{posts.title}}</h2>
+    {% if posts.author %}
+        <h1>By:{{posts.author}}</h1>
     {% else %}
         <h3> BY:N/A</h3>
     {% endif %}
-    <p2>{{d.Content}}</p2>
+    <p2>{{posts.blog}}</p2>
     {% endfor %}
 {% endblock %}
