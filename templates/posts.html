@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Post</title>
+{% endblock %}
+
+{% block body %}
+<h1>Posts</h1>
+    {% for d in data %}
+    <h2>{{d.title}}</h2>
+    {% if d.Author %}
+        <h1>By:{{d.Author}}</h1>
+    {% else %}
+        <h3> BY:N/A</h3>
+    {% endif %}
+    <p2>{{d.Content}}</p2>
+    {% endfor %}
+{% endblock %}
