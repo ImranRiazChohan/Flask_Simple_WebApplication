@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-<h1>Posts</h1>
+<h1>All Posts</h1>
 <hr>
 <h2>Create New Blog Post</h2>
 <form action="/posts",method="POST">
@@ -21,10 +21,15 @@
     {% for posts in post %}
     <h2>{{posts.title}}</h2>
     {% if posts.author %}
-        <h1>By:{{posts.author}}</h1>
+        <h3>By:{{posts.author}}</h3>
     {% else %}
-        <h3> BY:N/A</h3>
+        <h3> By:N/A</h3>
     {% endif %}
-    <p2>{{posts.blog}}</p2>
-    {% endfor %}
+<p>{{posts.Blog}}</p>
+<!--    <h3>ID:{{posts.id}}</h3>-->
+<!--<h4>Date:{{posts.date_posted}}</h4>-->
+<a href="/posts/edit/{{post.id}}">Update</a>
+<a href="/posts/delete/{{post.id}}">Delete</a>
+<hr>
+{% endfor %}
 {% endblock %}

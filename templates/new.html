@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>newpage</title>
+{% endblock %}
+
+{% block body %}
+<h1>Home Page</h1>
+<h2>Create New Blog Post</h2>
+<form action="/",method="POST">
+    Title:<input type="text" name="title" id="title">
+    <br>
+    Author:<input type="text" name="author" id="author">
+    <br>
+    Post:<input type="text" name=content" id="content">
+    <br>
+    <input type="submit" value="Post">
+</form>
+{% for posts in post %}
+    <h2>TITLE:{{posts.title}}</h2>
+    {% if posts.author %}
+        <h1>By:{{posts.author}}</h1>
+    {% else %}
+        <h3> BY:N/A</h3>
+    {% endif %}
+<p>Blog:{{posts.content}}</p>
+ {% endfor %}
+{% endblock %}
