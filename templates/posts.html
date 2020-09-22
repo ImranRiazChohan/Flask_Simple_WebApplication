@@ -5,31 +5,43 @@
 {% endblock %}
 
 {% block body %}
-<h1>All Posts</h1>
-<hr>
-<h2>Create New Blog Post</h2>
-<form action="/posts",method="POST">
-    Title:<input type="text" name="title" id="title">
+<div>
     <br>
-    Author:<input type="text" name="author" id="author">
-    <br>
-    Post:<input type="text" name=blog" id="blog">
-    <br>
-    <input type="submit" value="Post">
-</form>
-<hr>
+    <h1 style="display:inline">All Posts</h1>
+    <a style="display:inline" class="btn btn-success float-right" href="/posts/new">+New Post</a></div>
+<!--<h1>All Posts</h1>-->
+<!--<a class="btn btn-success float-right" href="/posts/new">+New Post</a>-->
+<!--<hr>-->
+<!--<h2>Create New Blog Post</h2>-->
+<!--<form action="/posts",method="POST">-->
+<!--    <label for="title">Title</label>-->
+<!--    <input class="form-control" name="title" id="title" type="text" placeholder="Enter Title" aria-label="Title">-->
+<!--    <br>-->
+<!--    <label for="author">Author</label>-->
+<!--    <input class="form-control" name="author" id="author" type="text" placeholder="Enter Author" aria-label="Author">-->
+<!--    <br>-->
+<!--    <label for="blog">Post</label>-->
+<!--    <textarea class="form-control" name="blog" id="blog" rows="3" placeholder="Enter Blog Post" ></textarea>-->
+<!--    <br>-->
+<!--    <br>-->
+<!--    <input class="btn btn-primary" type="submit" value="Post">-->
+<!--</form>-->
+<!--<hr>-->
+<br>
     {% for posts in post %}
-    <h2>{{posts.title}}</h2>
+    <br>
+<h2>{{posts.title}}</h2>
     {% if posts.author %}
-        <h3>By:{{posts.author}}</h3>
+        <small>Written by : {{posts.author.upper()}} on Date : {{posts.date_posted}}</small>
     {% else %}
-        <h3> By:N/A</h3>
+        <small>Written by :UnKnown on {{posts.date_posted}}</small>
     {% endif %}
-<p>{{posts.Blog}}</p>
-<!--    <h3>ID:{{posts.id}}</h3>-->
-<!--<h4>Date:{{posts.date_posted}}</h4>-->
-<a href="/posts/edit/{{post.id}}">Update</a>
-<a href="/posts/delete/{{post.id}}">Delete</a>
+    <br>
+    <br>
+<p style="white-space: pre-wrap">{{posts.Blog}}</p>
+
+<a class="btn btn-primary" href="/posts/edit/{{post.id}}">Update</a>
+<a class="btn btn-danger" href="/posts/delete/{{post.id}}">Delete</a>
 <hr>
 {% endfor %}
 {% endblock %}

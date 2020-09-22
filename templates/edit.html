@@ -1,21 +1,25 @@
 {% extends 'base.html' %}
 
 {% block title %}
-<title>Edit Post</title>
+<title>Update Post</title>
 {% endblock %}
 
 {% block body %}
-<h1>Edit Post</h1>
+<h1>Update Post</h1>
 <hr>
 <h2>Edit:</h2>
 <form action="/posts/edit/{{post.id}}",method="POST">
-    Title:<input type="text" name="title" id="title" value="{{post.title}}">
+     <label for="title">Title</label>
+    <input class="form-control" name="title" id="title" type="text" placeholder="Enter Title" aria-label="Title" value="{{post.title}}">
     <br>
-    Author:<input type="text" name="author" id="author" value="{{post.author}}">
+    <label for="author">Author</label>
+    <input class="form-control" name="author" id="author" type="text" placeholder="Enter Author" aria-label="Author" value="{{post.author}}">
     <br>
-    Post:<input type="text" name=blog" id="blog" value="{{post.Blog}}">
+    <label for="blog">Post</label>
+    <textarea class="form-control" name="blog" id="blog" rows="3" placeholder="Enter Blog Post" value="{{post.Blog}}"></textarea>
     <br>
-    <input type="submit" value="Save Changes">
+    <br>
+    <input class="btn btn-primary" type="submit" value="Save Changes">
 </form>
 <hr>
 {% endblock %}

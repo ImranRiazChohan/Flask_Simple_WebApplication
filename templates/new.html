@@ -1,28 +1,25 @@
 {% extends 'base.html' %}
 
 {% block title %}
-<title>newpage</title>
+<title>Post</title>
 {% endblock %}
 
 {% block body %}
-<h1>Home Page</h1>
+<h1>All Posts</h1>
+<hr>
 <h2>Create New Blog Post</h2>
-<form action="/",method="POST">
-    Title:<input type="text" name="title" id="title">
+<form action="/posts/edit/{{post.id}}",method="POST">
+    <label for="title">Title</label>
+    <input class="form-control" name="title" id="title" type="text" placeholder="Enter Title" aria-label="Title">
     <br>
-    Author:<input type="text" name="author" id="author">
+    <label for="author">Author</label>
+    <input class="form-control" name="author" id="author" type="text" placeholder="Enter Author" aria-label="Author">
     <br>
-    Post:<input type="text" name=content" id="content">
+    <label for="blog">Post</label>
+    <textarea class="form-control" name="blog" id="blog" rows="3" placeholder="Enter Blog Post" ></textarea>
     <br>
-    <input type="submit" value="Post">
+    <br>
+    <input class="btn btn-primary" type="submit" value="Post">
 </form>
-{% for posts in post %}
-    <h2>TITLE:{{posts.title}}</h2>
-    {% if posts.author %}
-        <h1>By:{{posts.author}}</h1>
-    {% else %}
-        <h3> BY:N/A</h3>
-    {% endif %}
-<p>Blog:{{posts.content}}</p>
- {% endfor %}
+<hr>
 {% endblock %}

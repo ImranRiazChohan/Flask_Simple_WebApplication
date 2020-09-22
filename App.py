@@ -76,5 +76,24 @@ def edit(id):
         return redirect("/posts")
     else:
         return render_template('edit.html',post=post)
+@app.route("/posts/new",methods=['GET','POST'])
+def new():
+    if request.method == "POST":
+        post_title=request.form["title"]
+        post_blog=request.form["blog"]
+        post_author=request.form["author"]
+        new_post=PostInfo(author=post_author,title=post_title,Blog=post_blog)
+        db.session.add(new_post)
+        db.session.commit()
+        return redirect('/posts')
+    else:
+        all_posts=PostInfo.query.all()
+        return render_template("new.html",post=all_posts)
+
+
+@app.route("/about")
+def About():
+    return render_template("about.html")
+
 if __name__=="__main__":
     app.run(debug=True)
