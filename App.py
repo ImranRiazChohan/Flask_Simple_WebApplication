@@ -3,7 +3,6 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 app=Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"]="sqlite:///posts.db"
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"]=False
 db=SQLAlchemy(app)
 
 class PostInfo(db.Model):
@@ -67,14 +66,15 @@ def  delete(id):
     return redirect("/posts")
 @app.route("/posts/edit/<int:id>",methods=['GET',"POST"])
 def edit(id):
+    post = PostInfo.query.get_or_404(id)
     if request.method=='POST':
-        post = PostInfo.query.get_or_404(id)
+        # post = PostInfo.query.get_or_404(id)
         post.title=request.form["title"]
         post.Blog=request.form["blog"]
         post.author=request.form["author"]
         db.session.commmit()
         return redirect("/posts")
     else:
-        return render_template('edit.html')
+        return render_template('edit.html',post=post)
 if __name__=="__main__":
     app.run(debug=True)
